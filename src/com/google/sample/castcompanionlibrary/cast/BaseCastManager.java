@@ -203,11 +203,11 @@ public abstract class BaseCastManager implements DeviceSelectionListener, Connec
         Utils.saveStringToPreference(mContext, PREFS_KEY_APPLICATION_ID, applicationId);
 
         LOGD(TAG, "Application ID is: " + mApplicationId);
-        mMediaRouter = MediaRouter.getInstance(context);
+        mMediaRouter = MediaRouter.getInstance(context.getApplicationContext());
         mMediaRouteSelector = new MediaRouteSelector.Builder().addControlCategory(
                 CastMediaControlIntent.categoryForCast(mApplicationId)).build();
 
-        mMediaRouterCallback = new CastMediaRouterCallback(this, context);
+        mMediaRouterCallback = new CastMediaRouterCallback(this, context.getApplicationContext());
         mMediaRouter.addCallback(mMediaRouteSelector, mMediaRouterCallback,
                 MediaRouter.CALLBACK_FLAG_REQUEST_DISCOVERY);
     }
